@@ -1,4 +1,4 @@
-FROM python:3.7-slim
+FROM python:3.8-slim
 
 # app workdir
 WORKDIR /app
@@ -14,19 +14,7 @@ RUN set -ex \
 	\
     # install app dependencies
     && rm -rf /var/lib/apt/lists/* \
-    && wget http://prdownloads.sourceforge.net/ta-lib/ta-lib-0.4.0-src.tar.gz \
-    && tar -xvzf ta-lib-0.4.0-src.tar.gz \
-    && cd ta-lib \
-    && ./configure --prefix=/usr \
-    && make \
-    && make install \
-    && cd .. \
-    && rm -rf ta-lib \
-    && rm ta-lib-0.4.0-src.tar.gz \
     && pip install --upgrade pip \
-    && pip install cython \
-    && ln -s /usr/include/locale.h /usr/include/xlocale.h \
-    && pip install numpy \
     && pip install -r ./requirements.txt --upgrade \
     \
     # clean pip cache
