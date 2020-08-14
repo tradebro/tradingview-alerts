@@ -4,14 +4,16 @@ from sanic.response import text
 from os import environ
 from tradingviewalerts.forwarders.base import BaseForwarder
 from tradingviewalerts.forwarders.telegram import TelegramForwarder
+from tradingviewalerts.forwarders.rabbitmq import RabbitMQForwarder
 
-# Valid options are ['telegram'] - More coming soon
+# Valid options are ['telegram', 'rabbitmq'] - More coming soon
 FORWARDER = environ.get('FORWARDER', 'telegram')
 
 
 def get_forwarder(fwd: str) -> BaseForwarder:
     forwarders = {
-        'telegram': TelegramForwarder
+        'telegram': TelegramForwarder,
+        'rabbitmq': RabbitMQForwarder
     }
 
     forwarder = forwarders.get(fwd)
