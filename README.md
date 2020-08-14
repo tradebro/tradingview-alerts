@@ -6,7 +6,7 @@ This aims to forward tradingview alerts into messages to other apps, queues or b
 
 | Name | Description |
 | :--- | :--- |
-| `FORWARDER` | Required string, valid options are telegram and rabbitmq |
+| `FORWARDER` | Required string, valid options are `telegram` and `rabbitmq` |
 
 ## Forwarders
 
