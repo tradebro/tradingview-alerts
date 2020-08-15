@@ -13,6 +13,8 @@ class RabbitMQForwarder(BaseForwarder):
         connection: aio_pika.Connection = await aio_pika.connect(AMQP_CONN_STRING,
                                                                  loop=asyncio.get_event_loop())
         channel: aio_pika.Channel = await connection.channel()
+        await channel.declare_queue(name=AMQP_QUEUE,
+                                    auto_delete=True)
 
         amqp_message = aio_pika.Message(body=ujson.dumps(message).encode())
 
